@@ -1,0 +1,19 @@
+<nav id="nav">
+	<ul>
+		<li><%= link_to "Blog", posts_path(:category=>"blog") %></li>
+		<li><%= link_to "Experiments", posts_path(:category=>"experiments") %></li>
+		
+		<% if logged_in? %>
+		<li><%= link_to "Admin", "#" %>
+			<ul>
+				<li><%= link_to "Add Post", new_post_path %></li>
+				<li><%= link_to "Manage Posts", posts_path %></li>
+				<li><%= link_to "Add Catagory", new_category_path %></li>
+				<li><%= link_to "Manage category", categories_path %></li>
+			</ul>
+		</li>
+		<% end -%>
+		
+	</ul>
+</nav>
+<div class="clear"></div>

@@ -1,0 +1,5 @@
+<div>
+	<% categories.each do |cat| %>
+		<%= check_box_tag "categories[]", cat.id %> <%= label_tag "#{cat.name}" %>
+	<% end -%>
+</div>

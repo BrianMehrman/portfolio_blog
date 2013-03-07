@@ -1,0 +1,29 @@
+#nav {
+	li:hover ul, li.iehover ul{
+		left:auto;				
+	}
+
+	ul {
+
+		li {
+			
+			float:left;
+			display:inline;
+			margin-right:1em;
+
+			ul {
+				position: absolute;
+				width: 10em;
+				left: -999em;
+
+				li {
+					margin-left: -2em;
+					clear:left;
+					width:10em;
+					padding:0.5em;
+					background:#aaa;
+				}
+			}
+		}
+	}
+}

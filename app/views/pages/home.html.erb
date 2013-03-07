@@ -1,0 +1,13 @@
+<h2>Recent Posts</h2>
+<div class="recent_blogs_section">
+	<ul class="posts">
+		<% recent_blogs.each do |blog| %>
+		<li>
+			<%= render :partial=>"posts/preview_post", :locals=>{:post=>blog}%>
+		</li>
+		<% end %>
+	</ul>
+</div>
+<div id="recent_experiments">
+
+</div>
