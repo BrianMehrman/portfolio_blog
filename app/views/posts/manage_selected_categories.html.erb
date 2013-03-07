@@ -1,0 +1,13 @@
+<%= form_for :posts, :url=>categorize_selected_posts_path, :remote=>true, :id=>"post_index" do |f| %>
+	<div id="selected_posts">
+	</div>
+	<%= render(:partial=>"category_list", :locals=>{:f=>f, :categories => @categories}) %>
+	<%= submit_tag %>
+<% end -%>
+<script>
+	var selected = getSelected();
+	$(selected).each(function(){
+		var new_input = $("<input type='hidden' value='" + this + "' name='posts[]'/>");
+		new_input.appendTo("#selected_posts");
+	})
+</script>

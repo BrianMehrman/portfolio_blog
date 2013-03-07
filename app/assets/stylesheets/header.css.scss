@@ -1,0 +1,20 @@
+header, #header {
+	/*border:0.1em #F2EC99 solid;*/
+  font-family: times, Times New Roman, times-roman, georgia, serif;	
+
+	background: #bbb;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	color: #1D3C42;
+	width:100%;
+	padding:0.4em;
+}
+
+.user_panel {
+	position:fixed;
+	top:2em;
+	right:0;
+	background:#EED6A5;
+}
+

@@ -1,0 +1,31 @@
+<% if logged_in? %>
+  <div class="selector"><%= check_box_tag post.id %></div>
+<% end -%>
+<div class="post">
+	<div class="post_header">
+		
+		
+		<h2 class="post_title"><%= link_to post.title, post %></h2>
+		<div class="post_desc">
+		  <span><%= post.description %></span>
+		</div>
+	</div>
+		
+		<div class="hide_n_show_text post_content">
+		  <% if post.image.present? %>
+		<div class="post_image">
+			<%= image_tag post.image.url(:thumb) %>
+		</div>
+		<% end -%>
+		  <span id="short_<%=post.id%>" class="short_text"><%= post.content.present? ? post.content[0..140] : "" %>...</span>
+		  <span id="long_<%=post.id%>" class="long_text" ><%= post.content %></span>
+		</div>
+		<div class="clear"></div>
+	<div class="post_footer">
+		<% if logged_in? %>
+	  <span><%= link_to 'Show', post %></span>
+	  <span><%= link_to 'Edit', edit_post_path(post) %></span>
+	  <span><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></span>
+		<% end -%>
+	</div>
+</div>
