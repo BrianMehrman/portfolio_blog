@@ -41,6 +41,8 @@ Thumbs.db
 # ##############
 .rvmrc
 config/database.yml
+config/deploy.rb
+Capfile
 
 tmp/
 .sqlite3

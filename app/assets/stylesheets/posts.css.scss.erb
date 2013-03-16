@@ -1,0 +1,140 @@
+// Place all the styles related to the posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/*
+	Hide and Show styles
+*/
+.hide_n_show_text a {
+	display:inline;
+	width:3em;
+	height:1em;
+	background-color:#fad955;
+	padding:0.3em;
+	text-align:center;
+	position:relative;
+	top:0;
+	left:-3.2em;
+}
+
+/*
+ end Hide and Show styles
+*/
+
+.posts_section, .recent_blogs_section {
+	/*border:0.1em #F2EC99 solid;*/
+	background: #bbb;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	padding:1em;
+	width:100%;
+
+	box-shadow: inset 0 0 12px 2px;
+
+
+}
+
+.posts_section h2 {
+}
+
+.posts {
+	margin: 0 0 0 -1.5em;
+}
+
+.posts li {
+	list-style:none;
+	color:#333;
+	padding: 1em 0.5em;
+	margin:0.2em;
+	margin-left:1em;
+}
+
+.post {
+	background: #ddd;
+	padding: 0.5em 1.0em 0.5em 1.0em;
+  -webkit-box-shadow: 
+        1px -1px   0 rgba(0,   0,   0,   0.100), 
+        3px -3px   0 rgba(233, 233, 233, 1.0), 
+        4px -4px   0 rgba(0,   0,   0,   0.125), 
+        6px -6px   0 rgba(233, 233, 233, 1.0),  
+        7px -7px   0 rgba(0,   0,   0,   0.150), 
+        9px -9px   0 rgba(233, 233, 233, 1.0),  
+        10px 2px 15px 10px rgba(0,   0,   0,   0.175);
+  -moz-box-shadow: 
+        1px -1px   0 rgba(0,   0,   0,   0.100), 
+        3px -3px   0 rgba(233, 233, 233, 1.0), 
+        4px -4px   0 rgba(0,   0,   0,   0.125), 
+        6px -6px   0 rgba(233, 233, 233, 1.0),  
+        7px -7px   0 rgba(0,   0,   0,   0.150), 
+        9px -9px   0 rgba(233, 233, 233, 1.0),  
+        10px 2px 15px 10px rgba(0,   0,   0,   0.175);
+  box-shadow: 
+        1px -1px   0 rgba(0,   0,   0,   0.100), 
+        3px -3px   0 rgba(233, 233, 233, 1.0), 
+        4px -4px   0 rgba(0,   0,   0,   0.125), 
+        6px -6px   0 rgba(233, 233, 233, 1.0),  
+        7px -7px   0 rgba(0,   0,   0,   0.150), 
+        9px -9px   0 rgba(233, 233, 233, 1.0),  
+        10px 2px 15px 10px rgba(0,   0,   0,   0.175);
+   border-radius: 1px 1px 4px 4px;
+
+	h2 {
+		margin:0.2em 0;
+		border-bottom:0.2em #333 solid;
+
+	}
+
+	a:hover {
+		background-image:url(<%= asset_path 'portfolio_sprites-01.png' %>);
+	}
+	.post_title, .post_desc {
+    font-family: times, Times New Roman, times-roman, georgia, serif;
+		text-align:center;
+	}
+
+	.post_title {
+		text-transform:uppercase;
+	}
+
+	.post_desc {
+		text-transform: capitalize;
+		border-bottom: 1px #333 solid;
+		border-top: 1px #333 solid;
+		margin-bottom: 0.5em;
+	}
+
+	.post_content {
+		
+		text-align:justfy;
+	}
+
+	.post_image {
+		float:right;
+	}
+}
+
+
+.edit_post .post_title, .edit_post .post_description {
+	float:left;
+
+}
+
+
+#post_title, #post_description {
+	width:95%;
+}
+
+.edit_post .post_title {
+	width:38%;
+}
+
+.edit_post .post_description {
+	width:58%;
+	margin-left:1em;
+}
+
+.edit_post textarea {
+	width:97%;
+
+}
