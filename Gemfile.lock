@@ -148,6 +148,7 @@ DEPENDENCIES
   capistrano
   codemirror-rails
   coffee-rails (~> 3.2.1)
+  execjs
   facebox-rails
   fcgi
   jquery-rails
