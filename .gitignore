@@ -44,6 +44,8 @@ config/database.yml
 config/deploy.rb
 Capfile
 
+public/dispatch.fcgi
+
 tmp/
 .sqlite3
 *.sqlite3
