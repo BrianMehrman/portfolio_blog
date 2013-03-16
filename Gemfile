@@ -6,11 +6,11 @@ gem 'rails', '3.2.8'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2'
-group :development
+group :development do
 	gem 'thin'
 	gem 'pry'
 end
-group :production
+group :production do 
 	gem 'fcgi'
 end
 
