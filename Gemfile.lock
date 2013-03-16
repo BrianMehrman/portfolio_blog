@@ -56,6 +56,7 @@ GEM
     facebox-rails (0.1.2)
       railties (~> 3.0)
       thor (~> 0.14)
+    fcgi (0.9.1)
     highline (1.6.15)
     hike (1.2.1)
     i18n (0.6.1)
@@ -148,6 +149,7 @@ DEPENDENCIES
   codemirror-rails
   coffee-rails (~> 3.2.1)
   facebox-rails
+  fcgi
   jquery-rails
   mysql2
   paperclip
