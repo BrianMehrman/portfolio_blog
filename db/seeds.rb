@@ -29,6 +29,6 @@ post_2 = Post.create(title:"test post 2", description:"second post to test thte 
 experiment_1 = Post.create(title:"test experiment 1", description:"first experiment post", content:"Suspendisse euismod posuere arcu, et aliquam sapien gravida in. Praesent viverra, eros et eleifend suscipit, sem erat hendrerit enim, quis cursus odio tortor vitae mauris. Etiam dapibus rutrum feugiat. Etiam hendrerit dolor vitae nisl adipiscing vitae suscipit diam consequat. Fusce at turpis velit, ut scelerisque enim. Praesent ultrices, nisi rutrum tempus scelerisque, tellus lectus mattis dui, vitae pellentesque nulla enim eget elit. Nunc eget arcu erat, id consequat tortor. Quisque vel ligula felis, quis rutrum lectus. Mauris vestibulum malesuada nisl, vitae auctor ipsum cursus quis. Quisque viverra tincidunt sapien at egestas. Cras aliquam consectetur dui non elementum. Donec dolor urna, posuere vel hendrerit sit amet, eleifend eu justo.",
 						user_id:test_user.id)
 
-CategorizedPost.create(category_id:categories[0], post_id:post_1.id)
-CategorizedPost.create(category_id:categories[0], post_id:post_2.id)
-CategorizedPost.create(category_id:categories[1], post_id:experiment_1.id)
+CategorizedPost.create(category_id:1, post_id:post_1.id)
+CategorizedPost.create(category_id:1, post_id:post_2.id)
+CategorizedPost.create(category_id:2, post_id:experiment_1.id)
