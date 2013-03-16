@@ -7,6 +7,7 @@ gem 'rails', '3.2.8'
 
 gem 'mysql2'
 gem 'thin'
+gem 'execjs'
 group :development do
 
 	gem 'pry'
