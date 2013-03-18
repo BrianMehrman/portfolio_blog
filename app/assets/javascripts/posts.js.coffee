@@ -4,32 +4,30 @@
 
 window.getSelected = () ->
     selected = $.map($(".selector input[type='checkbox']:checked"), (s) ->
-    	$(s).attr("name")) 
+      $(s).attr("name")) 
     selected
     
 window.init_hide_n_show = () ->
-	long_text_elm = $(this).find(".long_text")
-	short_text_elm = $(this).find(".short_text")
-	long_text_elm.hide()
-	short_text_elm.show()
-
-	show_link = $("<a href='#' class='show_link'>show</a>")
-	short_text_elm.prepend(show_link)
-	show_link.click(show_text)
-
-	hide_link = $("<a href='#' class='hide_link'>hide</a>")
-	hide_link.click(hide_text)
-	long_text_elm.prepend(hide_link)
+  long_text_elm = $(this).find(".long_text")
+  short_text_elm = $(this).find(".short_text")
+  long_text_elm.hide()
+  short_text_elm.show()
+  show_link = $("<a href='#' class='show_link'>show</a>")
+  short_text_elm.prepend(show_link)
+  show_link.click(show_text)
+  hide_link = $("<a href='#' class='hide_link'>hide</a>")
+  hide_link.click(hide_text)
+  long_text_elm.prepend(hide_link)
 
 hide_text = (e)->
-	e.preventDefault
-	$(this).parent().parent().find(".long_text").slideToggle('fast', ()->
-		$(this).parent().parent().find(".short_text").slideToggle('slow'))
+  e.preventDefault
+  $(this).parent().parent().find(".long_text").slideToggle('fast', ()->
+    $(this).parent().parent().find(".short_text").slideToggle('slow'))
 
 show_text = (e)->
-	e.preventDefault
-	$(this).parent().parent().find(".short_text").slideToggle('fast', ()->
-  	$(this).parent().parent().find(".long_text").slideToggle('slow'))
+  e.preventDefault
+  $(this).parent().parent().find(".short_text").slideToggle('fast', ()->
+    $(this).parent().parent().find(".long_text").slideToggle('slow'))
 
 convertCanvasToImage = (canvas) ->
   canvas.toDataURL();
@@ -45,8 +43,7 @@ grabElement = ->
       console.log(img)
 
 $ ->
-  
-	$('.hide_n_show_text').each(init_hide_n_show)
+  $('.hide_n_show_text').each(init_hide_n_show)
 
 
 window.updateiFrame = (selector, html,css,js) -> 
