@@ -85,15 +85,31 @@
 
 	}
 
-	a:hover {
-		background-image:url(<%= asset_path 'portfolio_sprites-01.png' %>);
-	}
+	
 	.post_title, .post_desc {
     font-family: times, Times New Roman, times-roman, georgia, serif;
 		text-align:center;
 	}
 
 	.post_title {
+    a:hover {
+      span.post_title_pointer {
+          background-image:url(<%= asset_path 'portfolio_sprites-01.png' %>);
+      }
+    }
+    a {
+      overflow:visible;
+      span.post_title_pointer {
+        width: 64px;
+        height: 64px;
+        position: relative;
+        top: -1.2em;
+        z-index: 300;
+        display: inline;
+        float: left;
+        left: 70%;  
+      }
+    }
 		text-transform:uppercase;
 	}
 
