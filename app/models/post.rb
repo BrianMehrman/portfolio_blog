@@ -8,8 +8,13 @@ class Post < ActiveRecord::Base
 	has_many :commentaries
 	has_many :comments, :through => :commentaries
 
+	has_many :attachments
+
 	belongs_to :user
-	
+
+	# validations
+  validates_presence_of :title, :description, :content
+
 	class << self
 		def by_category(category_name)
 			joins(:categories).where(["name = ?", category_name])

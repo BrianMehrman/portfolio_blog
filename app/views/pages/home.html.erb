@@ -1,13 +1,26 @@
-<h2>Recent Posts</h2>
-<div class="recent_blogs_section">
-	<ul class="posts">
-		<% recent_blogs.each do |blog| %>
-		<li>
-			<%= render :partial=>"posts/preview_post", :locals=>{:post=>blog}%>
-		</li>
-		<% end %>
-	</ul>
+<div id="window_top_home" class="row-fluid">
+  <div class="row-fluid sign" ><%= link_to 'Brian Mehrman', pages_home_path %></div>
+  <div class="window row-fluid">  </div>
 </div>
-<div id="recent_experiments">
-
+<div id="window_bottom_home" class="row-fluid">
+  <div id="recent_blogs" class="post_list span6">
+    <h2>Recent Posts</h2>
+    <ul class="posts">
+      <% if recent_blogs.present? %>
+        <% recent_blogs.each do |blog| %>
+        <li>
+          <%= render :partial=>"posts/quick_view", :locals=>{:post=>blog}%>
+        </li>
+        <% end %>
+      <% else %>
+        <li class="empty_post"></li>
+      <% end -%>
+    </ul>
+  </div>
+  <div id="recent_experiments" class="post_list span6">
+    <h2>Recent Experiments</h2>
+    <ul class="posts">
+      <li class="empty_post"></li>
+    </ul>
+  </div>
 </div>

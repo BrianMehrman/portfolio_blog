@@ -1,0 +1,33 @@
+<%=form_for([@post,@attachment]) do |f| %>
+  <% if @attachment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@attachment.errors.count, "error") %> prohibited this attachment from being saved:</h2>
+
+      <ul>
+      <% @attachment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= f.hidden_field :attachable_id, :value=>current_user.id %>
+
+  <div class="field">
+    <%= f.label :slug_name %>
+    <%= f.text_field :slug_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :attachable_type %>
+    <%= f.select :attachable_type, Attachment.get_attachable_types.map{|t| [t,t.humanize]} %>
+  </div>
+
+  <div class="field">
+    <%# assign attachment to content %>
+    <%# assign_attachment %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

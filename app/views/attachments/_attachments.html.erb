@@ -1,0 +1,15 @@
+
+<ul>
+
+<% @attachments.each do |attachment| %>
+  <li class="attachment" data-attachment-id="<%= attachment.attachable_id %>"
+      data-show-link="<%= post_attachment_path(@post.id, attachment.id)%>"
+      data-edit-link="<%= edit_post_attachment_path(@post.id,attachment.id)%>"  >
+    <%= attachment.id %>
+    <%= attachment.slug_name %>
+  </li>
+<% end %>
+</ul>
+
+<br />
+<%= link_to 'New Attachment', new_post_attachment_path(@post.id), class: "new_button" %>

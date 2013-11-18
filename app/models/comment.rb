@@ -3,4 +3,6 @@ class Comment < ActiveRecord::Base
 
   has_one :categorized_post
   has_one :post, :through => :categorized_post
+
+  validates_presence_of :guest_name, :content
 end

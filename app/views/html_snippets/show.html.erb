@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @html_snippet.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @html_snippet.description %>
+</p>
+
+<p>
+  <b>Html:</b>
+  <%= @html_snippet.html %>
+</p>
+
+<p>
+  <b>Css:</b>
+  <%= @html_snippet.css %>
+</p>
+
+<p>
+  <b>Javascript:</b>
+  <%= @html_snippet.javascript %>
+</p>
+
+
+<%= link_to 'Edit', edit_html_snippet_path(@html_snippet) %> |
+<%= link_to 'Back', html_snippets_path %>

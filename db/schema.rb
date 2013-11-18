@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121015043406) do
+ActiveRecord::Schema.define(:version => 20130914192800) do
+
+  create_table "attachments", :force => true do |t|
+    t.integer  "attachable_id"
+    t.string   "attachable_type"
+    t.integer  "post_id"
+    t.integer  "attacher_id"
+    t.string   "slug_name"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -39,6 +49,32 @@ ActiveRecord::Schema.define(:version => 20121015043406) do
     t.text     "content"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "html_snippets", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.text     "html"
+    t.text     "css"
+    t.text     "javascript"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  create_table "media", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+    t.string   "media_type"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   create_table "posts", :force => true do |t|

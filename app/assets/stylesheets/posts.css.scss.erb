@@ -21,7 +21,26 @@
  end Hide and Show styles
 */
 
-.posts_section, .recent_blogs_section {
+.html_editor {
+   -webkit-box-shadow:
+        0px -4px 8px 4px rgba(50, 50, 50, 0.25);
+  -moz-box-shadow:
+        0px -4px 8px 4px rgba(50, 50, 50, 0.25);
+  box-shadow:
+        0px -4px 8px 4px rgba(50, 50, 50, 0.25);
+}
+
+.submit {
+  float:right;
+  padding:1em;
+}
+@media (min-width: 1000px) {
+  .posts_section{
+    margin-top: 5em;
+  }
+}
+
+.posts_section {
 	/*border:0.1em #F2EC99 solid;*/
 	background: #bbb;
 	-webkit-border-radius: 5px;
@@ -29,53 +48,39 @@
 	border-radius: 5px;
 	padding:1em;
 	width:100%;
-
 	box-shadow: inset 0 0 12px 2px;
-
-
 }
 
 .posts_section h2 {
 }
 
-.posts {
-	margin: 0 0 0 -1.5em;
-}
 
-.posts li {
-	list-style:none;
-	color:#333;
-	padding: 1em 0.5em;
-	margin:0.2em;
-	margin-left:1em;
-}
-
-.post {
+.posts_section .post {
 	background: #ddd;
 	padding: 0.5em 1.0em 0.5em 1.0em;
-  -webkit-box-shadow: 
-        1px -1px   0 rgba(0,   0,   0,   0.100), 
-        3px -3px   0 rgba(233, 233, 233, 1.0), 
-        4px -4px   0 rgba(0,   0,   0,   0.125), 
-        6px -6px   0 rgba(233, 233, 233, 1.0),  
-        7px -7px   0 rgba(0,   0,   0,   0.150), 
-        9px -9px   0 rgba(233, 233, 233, 1.0),  
+  -webkit-box-shadow:
+        1px -1px   0 rgba(0,   0,   0,   0.100),
+        3px -3px   0 rgba(233, 233, 233, 1.0),
+        4px -4px   0 rgba(0,   0,   0,   0.125),
+        6px -6px   0 rgba(233, 233, 233, 1.0),
+        7px -7px   0 rgba(0,   0,   0,   0.150),
+        9px -9px   0 rgba(233, 233, 233, 1.0),
         10px 2px 15px 10px rgba(0,   0,   0,   0.175);
-  -moz-box-shadow: 
-        1px -1px   0 rgba(0,   0,   0,   0.100), 
-        3px -3px   0 rgba(233, 233, 233, 1.0), 
-        4px -4px   0 rgba(0,   0,   0,   0.125), 
-        6px -6px   0 rgba(233, 233, 233, 1.0),  
-        7px -7px   0 rgba(0,   0,   0,   0.150), 
-        9px -9px   0 rgba(233, 233, 233, 1.0),  
+  -moz-box-shadow:
+        1px -1px   0 rgba(0,   0,   0,   0.100),
+        3px -3px   0 rgba(233, 233, 233, 1.0),
+        4px -4px   0 rgba(0,   0,   0,   0.125),
+        6px -6px   0 rgba(233, 233, 233, 1.0),
+        7px -7px   0 rgba(0,   0,   0,   0.150),
+        9px -9px   0 rgba(233, 233, 233, 1.0),
         10px 2px 15px 10px rgba(0,   0,   0,   0.175);
-  box-shadow: 
-        1px -1px   0 rgba(0,   0,   0,   0.100), 
-        3px -3px   0 rgba(233, 233, 233, 1.0), 
-        4px -4px   0 rgba(0,   0,   0,   0.125), 
-        6px -6px   0 rgba(233, 233, 233, 1.0),  
-        7px -7px   0 rgba(0,   0,   0,   0.150), 
-        9px -9px   0 rgba(233, 233, 233, 1.0),  
+  box-shadow:
+        1px -1px   0 rgba(0,   0,   0,   0.100),
+        3px -3px   0 rgba(233, 233, 233, 1.0),
+        4px -4px   0 rgba(0,   0,   0,   0.125),
+        6px -6px   0 rgba(233, 233, 233, 1.0),
+        7px -7px   0 rgba(0,   0,   0,   0.150),
+        9px -9px   0 rgba(233, 233, 233, 1.0),
         10px 2px 15px 10px rgba(0,   0,   0,   0.175);
    border-radius: 1px 1px 4px 4px;
 
@@ -85,7 +90,7 @@
 
 	}
 
-	
+
 	.post_title, .post_desc {
     font-family: times, Times New Roman, times-roman, georgia, serif;
 		text-align:center;
@@ -107,7 +112,7 @@
         z-index: 300;
         display: inline;
         float: left;
-        left: 70%;  
+        left: 70%;
       }
     }
 		text-transform:uppercase;
@@ -121,7 +126,6 @@
 	}
 
 	.post_content {
-		
 		text-align:justfy;
 	}
 
@@ -133,7 +137,6 @@
 
 .edit_post .post_title, .edit_post .post_description {
 	float:left;
-
 }
 
 
@@ -152,5 +155,75 @@
 
 .edit_post textarea {
 	width:97%;
+}
 
+ul#post_menu {
+  position: relative;
+  height: 3em;
+  li {
+    // float:left;
+    // position: absolute;
+    width: 6em;
+    margin: 1em 0.5em;
+    overflow: hidden;
+    background: #abc;
+    #attachment_menu {
+      // display: none;
+      -webkit-transition-duration: 0.3s;
+      -moz-transition-duration: 0.3s;
+      -o-transition-duration: 0.3s;
+      transition-duration: 0.3s;
+      position: relative;
+      left: -250em;
+      height: 1em;
+      width: 1em;
+      #attachment_index {
+        width: 30%;
+        height: 90%;
+        position: absolute;
+        display: inline;
+        left: 0;
+        background: #eef;
+        margin: 0.5em;
+        ul {
+          margin: 0;
+          li {
+            margin: 0;
+            list-style: none;
+            width: 99%;
+            height: 2em;
+            border: 1px solid #333;
+          }
+          li:hover {
+            background: #bcd;
+          }
+        }
+        .new_button {
+          position: absolute;
+          width: 99%;
+          bottom:0;
+          border: 1px solid #ddf;
+        }
+      }
+      #attachment_show_edit {
+        width: 60%;
+        display: inline;
+        position: absolute;
+        height: 90%;
+        right: 0;
+        margin: 0.5em;
+        background: #eef;
+      }
+    }
+  }
+
+  li:hover {
+    width: 30em;
+    #attachment_menu {
+      // display: block;
+      left: 0;
+      height: 30em;
+      width: 30em;
+    }
+  }
 }

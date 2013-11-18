@@ -1,0 +1,68 @@
+<%= form_for(@html_snippet) do |f| %>
+  <% if @html_snippet.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@html_snippet.errors.count, "error") %> prohibited this html_snippet from being saved:</h2>
+
+      <ul>
+      <% @html_snippet.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div id="tabs" class="tabs html_editor">
+    <% content_for :head do %>
+      <script>
+      $(function(){
+
+        var code_mirror = new LocalMirror('#htmlArea','#cssArea','#jsArea');
+        $(".tabs").tabs();
+
+      });
+      </script>
+    <% end %>
+    
+    <ul>
+      <li><%= link_to "Content", "#tabs-1" %></li>
+      <li><%= link_to "HTML",    "#tabs-2" %></li>
+      <li><%= link_to "CSS",     "#tabs-3" %></li>
+      <li><%= link_to "JS",      "#tabs-4" %></li>
+      <li><%= link_to "Preview", "#tabs-5" %></li>
+    </ul>
+    <div id="tabs-1">
+      <div class="field post_title">
+        <%= f.label :name %> <%= f.text_field :name %>
+      </div>
+      <div class="field post_description">
+        <%= f.label :description %> <%= f.text_field :description %>
+      </div>
+      <div class="clear"></div>
+    </div>
+
+    <div id="tabs-2" class="tab">
+      <h3>HTML</h3>
+      <%= f.text_area :html, :id=>'htmlArea' %>
+    </div>
+    
+    <div id="tabs-3" class="tab">
+      <h3>CSS</h3>
+      <%= f.text_area :css, :id=>'cssArea' %>
+      <div class="edit_control_panel"><input type="button" id="update" value="Update" /></div>
+    </div>
+    
+    <div id="tabs-4" class="tab" >
+      <h3>Javascript</h3>
+      <%= f.text_area :javascript, :id=>'jsArea' %>
+      <div class="edit_control_panel"><input type="button" id="update" value="Update" /></div>
+    </div>
+    
+    <div id="tabs-5" class="tab">
+      <h3>HTML Preview</h3>
+      <iframe id="preview"></iframe>
+      <div class="edit_control_panel"><input type="button" id="update" value="Update" /></div>
+    </div>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

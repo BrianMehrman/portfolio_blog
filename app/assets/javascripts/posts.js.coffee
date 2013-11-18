@@ -4,9 +4,9 @@
 
 window.getSelected = () ->
     selected = $.map($(".selector input[type='checkbox']:checked"), (s) ->
-      $(s).attr("name")) 
+      $(s).attr("name"))
     selected
-    
+
 window.init_hide_n_show = () ->
   long_text_elm = $(this).find(".long_text")
   short_text_elm = $(this).find(".short_text")
@@ -31,7 +31,7 @@ show_text = (e)->
 
 convertCanvasToImage = (canvas) ->
   canvas.toDataURL();
-  
+
 
 grabElement = ->
   html2canvas $("#preview").contents().find("body"),
@@ -44,9 +44,52 @@ grabElement = ->
 
 $ ->
   $('.hide_n_show_text').each(init_hide_n_show)
+  $('#attachment_button').hover(()->
+    unless $(this).hasClass('open')
+      path = $(this).attr('href')
+      $.ajax({
+        url: path
+        type: 'GET'
+        dataType: 'script'
+        beforeSend:(xhr,settings)->
+          $('#attachment_button');
+          $("#attachment_index").html('loading').addClass('loading');
+        complete:()->
+          $('#attachment_index').removeClass('loading')
+        error:()->
+          $("#attachment_index").html('Error')
+        success:(data, status,xhr)->
+          $('#attachment_button').addClass('open');
+          # $("#attachment_index").html(xhr.responseText)
+      })
+  )
+  $('#attachment_button').bind('mouseleave',()->
+    $(this).removeClass('open')
+  )
+window.attachment_item_init = ()->
+  unless $(this).hasClass('showing') == true
+    self = this
+    path = $(self).attr('data-show-link')
+    console.log(path)
+    $.ajax({
+      url:path
+      type: 'GET'
+      dataType: 'script'
+      beforeSend:(xhr,settings)->
+        $('.attachment').removeClass("showing")
+        $("#attachment_show_edit").fadeOut(250,()->
+          $(this).html('loading').fadeIn(100).addClass('loading');
+        );
+      complete:()->
+        $('#attachment_show_edit').removeClass('loading')
+      error:()->
+        $("#attachment_show_edit").html('Error')
+      success:(data,status,xhr)->
+        $(self).addClass("showing")
+        # $("#attachment_show_edit").html(xhr.responseText)
+    })
 
-
-window.updateiFrame = (selector, html,css,js) -> 
+window.updateiFrame = (selector, html,css,js) ->
   previewFrame = $(selector)[0];
   preview =  previewFrame.contentDocument || previewFrame.contentWindow.document;
   js_snippet = "\<script\>" + js + "\<\/script\>"
@@ -54,7 +97,7 @@ window.updateiFrame = (selector, html,css,js) ->
   preview_output = "<!doctype html><html><head><meta charset='utf-8'>" + js_snippet + css_snippet + "</head><body>" + html + "</body></html>"
   preview.open()
   preview.write(preview_output)
-  preview.close()   
+  preview.close()
   console.log("here first")
   grabElement()
 
@@ -70,10 +113,10 @@ window.LocalMirror = (h_sel, c_sel, j_sel)->
           mode: 'text/html',
           tabMode: 'indent',
           lineNumbers:true,
-          theme:'ambiance', 
+          theme:'ambiance',
           lineWrapping:true
   });
-  
+
   cssEditor = CodeMirror.fromTextArea(cssArea, {
           mode: 'text/html',
           tabMode: 'indent',
@@ -81,7 +124,7 @@ window.LocalMirror = (h_sel, c_sel, j_sel)->
           theme:'ambiance',
           lineWrapping:true
   });
-  
+
   jsEditor = CodeMirror.fromTextArea(jsArea, {
           mode: 'js',
           tabMode: 'indent',
@@ -89,9 +132,9 @@ window.LocalMirror = (h_sel, c_sel, j_sel)->
           theme:'ambiance',
           lineWrapping:true
   });
- 
-  updatePreview = () -> 
+
+  updatePreview = () ->
     updateiFrame('#preview', htmlEditor.getValue(),cssEditor.getValue(),jsEditor.getValue())
-    
+
   $("#update").click(updatePreview);
   setTimeout(updatePreview, 300);

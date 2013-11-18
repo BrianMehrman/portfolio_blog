@@ -1,3 +1,14 @@
+<ul id="post_menu">
+<li class="attachments_menu_button button">
+  <a href="<%=post_attachments_path(@post.id)%>" id="attachment_button">Attachments</a>
+  <div id="attachment_menu">
+    <div id="attachment_index">
+    </div>
+    <div id="attachment_show_edit">
+    </div>
+  </div>
+</ul>
+
 <%= form_for(@post, :html => { :multipart => true } ) do |f| %>
   <% if @post.errors.any? %>
     <div id="error_explanation">
@@ -10,41 +21,9 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field post_title">
-    <%= f.label :title %> <%= f.text_field :title %>
-  </div>
-  <div class="field post_description">
-    <%= f.label :description %> <%= f.text_field :description %>
-  </div>
-  <div class="clear"></div>
+  
   <div class="field">
-    <%= f.label :content %> 
     <%= f.text_area :content %>
-  </div>
-
-  <div class="html_editor">
-    <% content_for :head do %>
-      <script>
-      $(function(){
-        var code_mirror = new LocalMirror('#htmlArea','#cssArea','#jsArea');
-      });
-      </script>
-    <% end %>
-    <h2>HTML Example</h2>
-    <h3>HTML</h3>
-    <%= f.text_area :html, :id=>'htmlArea' %>
-
-    <h3>CSS</h3>
-    <%= f.text_area :css, :id=>'cssArea' %>
-
-    <h3>Javascript</h3>
-    <%= f.text_area :javascript, :id=>'jsArea' %>
-    
-    <h3>HTML Preview</h3>
-    <iframe id="preview"></iframe>
-
-    <input type="button" id="update" value="Update" />
   </div>
   
   <div class="field">
@@ -52,7 +31,7 @@
   </div>
 
   <div class="actions">
-    <%= f.submit  %>
+      <%= icon_submit_link("icon-save", "Save", "submit") %>
   </div>
 
 <% end %>

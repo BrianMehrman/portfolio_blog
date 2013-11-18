@@ -1,33 +1,27 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Title:</b>
+<h1>
   <%= @post.title %>
-</p>
+</h1>
 
-<p>
-  <b>Description:</b>
+<p class="description" >
   <%= @post.description %>
 </p>
 
-<p>
-  <b>Content:</b>
-  <%= @post.content %>
-</p>
- <p> 
-  <b>Image:</b>
-  <%= image_tag @post.image %>
- </p>
-<p>  
-	<iframe id="preview"></iframe>
-</P>
+<div>  
+  <iframe id="preview"></iframe>
+</div>
 
+<div>
+  <%= @post.content %>
+</div>
 
 	<script>
 		$(function(){
 			window.updateiFrame("#preview","<%= j(raw @post.html) %>","<%= j @post.css %>", "<%= j @post.javascript %>");
   	 });
   </script>
+
 <% if logged_in? %>
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <% end %>
