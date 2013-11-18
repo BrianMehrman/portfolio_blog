@@ -60,6 +60,13 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
+    require "CanvasToImage"
+    File.open("tmp/reply.png", "wb") { |f| f.write(CanvasToImage::decode_data_uri(params[:post][:image])[0]) }  
+
+# binding.pry    
+    file = File.open("tmp/reply.png", "r")
+    params[:post][:image] = file
+
     @post = Post.new(params[:post])
 
     respond_to do |format|
@@ -73,7 +80,6 @@ class PostsController < ApplicationController
     end
   end
 
-  
 
   # PUT /posts/1
   # PUT /posts/1.json
@@ -81,8 +87,8 @@ class PostsController < ApplicationController
     require 'CanvasToImage'
     @post = Post.find(params[:id])
     File.open("tmp/reply.png", "wb") { |f| f.write(CanvasToImage::decode_data_uri(params[:post][:image])[0]) }  
-    
-    # binding.pry
+
+# binding.pry    
     file = File.open("tmp/reply.png", "r")
     params[:post][:image] = file
 

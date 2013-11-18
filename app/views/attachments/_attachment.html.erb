@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Slug Name:</b>
+  <%= @attachment.slug_name %>
+</p>
+
+<p>
+  <b>Attachable type:</b>
+  <%= @attachment.attachable_type %>
+</p>
+
+<p>
+  <b>Attacher:</b>
+  <%= @attachment.user ? @attachment.user.name : "No Attacher" %>
+</p>
+
+<p>
+  <span>Insert Into Content</span>
+</p>
+<p>
+  <span>Copy to Clipboard</span>
+</p>
+<p>
+  <%= link_to 'Edit', edit_post_attachment_path(@post,@attachment) %> 
+</p>
+<p><%= link_to 'Destroy', post_attachment_path(@post,@attachment), method: :delete, data: { confirm: 'Are you sure?' } %></p>
+
+<%= link_to 'Close', "#" %>

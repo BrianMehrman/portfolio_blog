@@ -11,15 +11,23 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
+//= require jquery_ujs
+//= require twitter/bootstrap
+//= require jquery-ui
 //= require codemirror
 //= require codemirror/modes/javascript
 //= require codemirror/modes/htmlmixed
 //= require codemirror/modes/xml
 //= require codemirror/modes/css
 //= require jquery.facebox
-//= require jquery_ujs
 //= require_tree .
 
+removeSection = function(e){
+  e.preventDefault();
+  things_to_show = $(this).attr('data-show');
+  $(this).parent().remove();
+  if(typeof(things_to_show) != 'undefined') { $(things_to_show).show(); };
+}
 
 ieHover = function() {
 	var sfEls = document.getElementById("nav").getElementsByTagName("LI");
@@ -32,9 +40,43 @@ ieHover = function() {
 		}
 	}
 }
+
+var rotateToTime = function(el) {
+  // rotate element to match the time
+  elms = $(el);
+
+  elms.each(function(){
+    time = new Date( Date.parse($(this).attr('data-post-date')) );
+
+    d = (time.getHours() * 60  + time.getMinutes()) / (60 * 24) * 360;
+    // midnight is 0 deg / noon is 180 deg
+    var a = "-webkit-transform: rotate("+d+"deg); -moz-transform: rotate("+d+"deg); -ms-transform: rotate("+d+"deg); -o-transform: rotate("+d+"deg); transform: rotate("+d+"deg);";
+    $(this).find('div').attr("style", a);
+  });
+
+}
+
 if (window.attachEvent) window.attachEvent("onload", sfHover);
 
 jQuery(document).ready(function($) {
   $('a[rel*=facebox]').facebox()
+  $('.js-remove').click(removeSection);
+  rotateToTime('.rotate-to-date');
+
+
 })
+
+
+getForm = function ( element )
+{
+  while( element )
+  {
+    element = element.parentNode
+    if( element.tagName.toLowerCase() == "form" )
+    {
+      return element
+    }
+  }
+  return 0; //error: no form found in ancestors
+}
 

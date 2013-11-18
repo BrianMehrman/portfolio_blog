@@ -1,0 +1,12 @@
+<div class="post inset-shadow">
+  <div class="post_header">
+    <div class="disc-stage-64 rotate-to-date" data-post-date="<%= post.created_at %>">
+     <div class="night-day-disc"></div>
+    </div>
+    <p class="post_title"><%= link_to( (content_tag(:span,'',:class=>'post_title_pointer')+post.title), post) %></p>
+    <div class="post_desc">
+      <span><%= post.description %></span>
+    </div>
+  </div>
+  <div class="clear"></div>
+</div>

@@ -27,10 +27,12 @@
     <%= f.label :password_confirmation %>
     <%= f.text_field :password_confirmation %>
   </div>
+  <% if @roles.present? %>
   <div class="field">
     <%= f.label :role %><br />
-    <%= f.select :role, options_for_select(@roles.collect{|role| [role.name.humanize,role.id]}) %>
+    <%= f.select :role, options_for_select(@roles.collect{|role| [(role.name ? role.name.humanize : "Undefined"),role.id]}) %>
   </div>
+  <% end -%>
   <div class="actions">
     <%= f.submit %>
   </div>

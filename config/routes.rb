@@ -1,4 +1,8 @@
 PortfolioBlog::Application.routes.draw do
+  resources :media
+
+  resources :html_snippets
+
   resources :roles
 
   get "sessions/new"
@@ -10,8 +14,9 @@ PortfolioBlog::Application.routes.draw do
   resources :comments
 
   resources :categories
-  
+
   resources :posts do
+    resources :attachments
     collection do
       post 'edit_multiple'
       put 'update_multiple'
@@ -19,10 +24,8 @@ PortfolioBlog::Application.routes.draw do
       post 'categorize_selected'
     end
   end
-      
 
   resource :sessions
-
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
