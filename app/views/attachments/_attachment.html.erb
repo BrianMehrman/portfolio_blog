@@ -16,14 +16,13 @@
 </p>
 
 <p>
-  <span>Insert Into Content</span>
+  <span><%= link_to(fa_icon("caret-square-o-down", text:"Insert Into Content"), '#test') %></span>
 </p>
 <p>
-  <span>Copy to Clipboard</span>
+  <span><%= link_to(fa_icon("clipboard", text: "Copy to Clipboard"), '#test') %></span>
 </p>
 <p>
-  <%= link_to 'Edit', edit_post_attachment_path(@post,@attachment) %> 
+  <span><%= link_to fa_icon("edit", text:'Edit'), edit_post_attachment_path(@post,@attachment) %></span>
 </p>
-<p><%= link_to 'Destroy', post_attachment_path(@post,@attachment), method: :delete, data: { confirm: 'Are you sure?' } %></p>
+<p><%= link_to fa_icon("minus-square",text:'Destroy'), post_attachment_path(@post,@attachment), method: :delete, data: { confirm: 'Are you sure?' } %></p>
 
-<%= link_to 'Close', "#" %>

@@ -1,0 +1,25 @@
+<div id="window_top_home" class="row-fluid">
+  <div class="window row-fluid">  </div>
+</div>
+<div id="window_bottom_home" class="row-fluid">
+  <div id="recent_blogs" class="post_list span6">
+    <h2>Recent Posts</h2>
+    <ul class="posts">
+      <% if recent_blogs.present? %>
+        <% recent_blogs.each do |blog| %>
+        <li>
+          <%= render :partial=>"posts/quick_view", :locals=>{:post=>blog}%>
+        </li>
+        <% end %>
+      <% else %>
+        <li class="empty_post"></li>
+      <% end -%>
+    </ul>
+  </div>
+  <div id="recent_experiments" class="post_list span6">
+    <h2>Recent Experiments</h2>
+    <ul class="posts">
+      <li class="empty_post"></li>
+    </ul>
+  </div>
+</div>

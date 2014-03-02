@@ -45,6 +45,7 @@ config/deploy.rb
 Capfile
 
 public/dispatch.fcgi
+public/system
 .htaccess
 
 tmp/

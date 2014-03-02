@@ -8,7 +8,7 @@ PortfolioBlog::Application.routes.draw do
   get "sessions/new"
 
   get "pages/home"
-
+  get "pages/blog"
   resources :users
 
   resources :comments

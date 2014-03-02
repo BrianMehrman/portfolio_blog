@@ -7,7 +7,7 @@ gem 'rails', '3.2.8'
 
 gem 'mysql2'
 gem 'thin'
-gem "font-awesome-rails"
+gem "font-awesome-rails", '4.0.3.0'
 # gem "therubyracer", :require => 'v8'
 group :development do
 	gem 'pry'

@@ -1,26 +1,58 @@
 <div id="window_top_home" class="row-fluid">
-  <div class="row-fluid sign" ><%= link_to 'Brian Mehrman', pages_home_path %></div>
-  <div class="window row-fluid">  </div>
+
 </div>
-<div id="window_bottom_home" class="row-fluid">
-  <div id="recent_blogs" class="post_list span6">
-    <h2>Recent Posts</h2>
-    <ul class="posts">
-      <% if recent_blogs.present? %>
-        <% recent_blogs.each do |blog| %>
-        <li>
-          <%= render :partial=>"posts/quick_view", :locals=>{:post=>blog}%>
-        </li>
-        <% end %>
-      <% else %>
-        <li class="empty_post"></li>
-      <% end -%>
-    </ul>
-  </div>
-  <div id="recent_experiments" class="post_list span6">
-    <h2>Recent Experiments</h2>
-    <ul class="posts">
-      <li class="empty_post"></li>
-    </ul>
-  </div>
-</div>
+
+  <ul id="scene" class="scene" data-calibrate-x="false"
+      data-calibrate-y="true"
+      data-invert-x="false"
+      data-invert-y="true"
+      data-limit-x="false"
+      data-limit-y="10"
+      data-scalar-x="2"
+      data-scalar-y="8"
+      data-friction-x="0.2"
+      data-friction-y="0.8">
+    <li id="panel_1" data-depth="0.00" class="layer panel">
+      <h1>Brian Mehrman</h1>
+      <p>Software Developer</p>
+    </li>
+    <li id="panel_2" data-depth="0.20" class="layer panel">
+      <h2>Who am I?</h2>
+      <p>I am an artist who learned to program. I graduate with a BFA in Interactive Design and Game Development. I always had an interesting in making things more interactive using code. I have used this interest to turn myself into a developer. I can design and code.</p>
+    </li>
+    <li id="panel_3" data-depth="0.10" class="layer panel">
+      <h2>Code</h2>
+      <p>As a Developer I utilize different programing Lanuages as well as markup languages.</p>
+      <div class="code-box" ></div>
+      <ul id="programming_languages">
+        <% programing_languages.each do |f| %>
+        <li id="code-<%= f.name %>" class="code"><span class="icon-<%=f.name%>"></span><%= f.name.titleize %></li>
+        <% end -%>
+      </ul>
+    </li>
+    <li id="panel_4" data-depth="0.50" class="layer panel">
+      <h2>Developerment</h2>
+      <p>I utilize many frameworks in developing software.</p>
+      <ul id="development-frameworks">
+        <% development_frameworks.each do |f| %>
+        <li id="framework-<%= f.slug %>" class="framework"><span class="icon-<%=f.slug%>"></span><%= f.name.titleize %></li>
+        <% end -%>
+      </ul>
+    </li>
+    <li id="panel_5" data-depth="0.90" class="layer panel">
+      <h2>Design</h2>
+      <p>While coding is my main focus I still use my Design skills frequently.</p>
+      <ul id="design-software-rating">
+        <% design_software.each do |s| %>
+        <li id="sofware-<%= s.name %>" class="design-software"><%= s.name.titleize %></li>
+        <% end -%>
+      </ul>
+    </li>
+    <li id="panel_6" data-depth="1.00" class="layer panel">
+      <h2>Some recent projects</h2>
+      <ul>
+        <!-- featured posts -->
+      </ul>
+    </li>
+  </ul>
+
