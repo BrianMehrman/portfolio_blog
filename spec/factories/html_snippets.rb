@@ -1,4 +1,4 @@
-FactoryGirl.define do 
+FactoryGirl.define do
   factory :html_snippet do
     name {Faker::HipsterIpsum.words.join(' ')}
     description {Faker::Lorem.sentences}
@@ -8,9 +8,10 @@ FactoryGirl.define do
     created_at {Faker::Time.date}
     updated_at {Faker::Time.date}
 
-    trait :with_image do
-      image { File.new(Rails.root.join('spec','assets','images','BuildingRender_01.jpeg'))}
-    end
+    image_file_name {Faker::Name}
+    image_content_type {Faker::Name}
+    image_file_size {1024}
+    image_updated_at {Faker::Time.date}
 
     trait :with_js do
       javascript ""

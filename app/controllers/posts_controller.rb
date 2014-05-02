@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
 
-  
+
   layout 'facebox', :only => [:manage_selected_categories, :categorize_selected]
   def index
     @posts = params[:category].present? ? Post.by_category(params[:category]) : Post.all
@@ -41,7 +41,7 @@ class PostsController < ApplicationController
         context.fillStyle = 'rgba(0, 0, 250, 0.5)';
         context.fillRect(30, 30, 55, 50);
       </script>"
-    @post.css = "/* 
+    @post.css = "/*
       The CSS Goes Here
       */
       p {font-family: monospace;}"
@@ -61,9 +61,9 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     require "CanvasToImage"
-    File.open("tmp/reply.png", "wb") { |f| f.write(CanvasToImage::decode_data_uri(params[:post][:image])[0]) }  
+    File.open("tmp/reply.png", "wb") { |f| f.write(CanvasToImage::decode_data_uri(params[:post][:image])[0]) }
 
-# binding.pry    
+# binding.pry
     file = File.open("tmp/reply.png", "r")
     params[:post][:image] = file
 
@@ -86,9 +86,9 @@ class PostsController < ApplicationController
   def update
     require 'CanvasToImage'
     @post = Post.find(params[:id])
-    File.open("tmp/reply.png", "wb") { |f| f.write(CanvasToImage::decode_data_uri(params[:post][:image])[0]) }  
+    File.open("tmp/reply.png", "wb") { |f| f.write(CanvasToImage::decode_data_uri(params[:post][:image])[0]) }
 
-# binding.pry    
+# binding.pry
     file = File.open("tmp/reply.png", "r")
     params[:post][:image] = file
 
@@ -123,7 +123,7 @@ class PostsController < ApplicationController
       post.categories = categories
       unless post.save
         # catch error here
-      end 
+      end
     end
 
     respond_to do |format|
@@ -143,5 +143,14 @@ class PostsController < ApplicationController
       format.html { redirect_to posts_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+
+  def post_params
+    params.require(:user).permit(:title, :description, :user_id,
+               :content, :html, :css, :javascript, :created_at,
+               :updated_at, :image_file_name, :image_content_type,
+               :image_file_size, :image_updated_at )
   end
 end
