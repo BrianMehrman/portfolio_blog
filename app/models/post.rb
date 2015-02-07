@@ -1,5 +1,5 @@
 class Post < ActiveRecord::Base
-	attr_accessible :image, :title, :description, :content, :user_id, :html, :css, :javascript
+	attr_accessible :image, :title, :description, :content, :user_id, :html, :css, :javascript, :status_type_id
 
 	has_attached_file :image, :styles => { :medium => "300x300", :thumb => "100x100" }
 
@@ -11,6 +11,8 @@ class Post < ActiveRecord::Base
 	has_many :attachments
 
 	belongs_to :user
+
+	has_one :status_type
 
 	# validations
   validates_presence_of :title, :description, :content

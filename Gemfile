@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 gem 'rails', '3.2.8'
 
@@ -9,8 +9,10 @@ gem 'mysql2'
 gem 'thin'
 gem "font-awesome-rails"
 # gem "therubyracer", :require => 'v8'
-group :development do
+group :development, :test do
 	gem 'pry'
+  gem 'simplecov', require: false
+  gem 'simplecov-rcov', require: false
 end
 
 gem 'fcgi'
@@ -25,7 +27,6 @@ group :assets do
   gem 'less-rails'
   gem 'coffee-rails', '~> 3.2.1'
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  gem 'therubyracer', :platforms => :ruby
   gem 'twitter-bootstrap-rails'
   gem 'uglifier', '>= 1.0.3'
 end
@@ -41,6 +42,9 @@ group :test do
   # database_cleaner is not required, but highly recommended
   gem 'database_cleaner'
   gem 'webrat'
+  gem "vcr"
+  gem 'webmock', "1.15.2"
+
 end
 
 gem 'jquery-rails'
@@ -60,3 +64,9 @@ gem 'capistrano'
 
 # To use debugger
 # gem 'debugger'
+gem 'rubber', :path=>"~/ruby_projects/rubber"
+gem 'open4'
+gem 'gelf'
+gem 'therubyracer', :platforms => :ruby
+gem 'graylog2_exceptions', :git => 'git://github.com/wr0ngway/graylog2_exceptions.git'
+gem 'graylog2-resque'

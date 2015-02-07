@@ -1,4 +1,4 @@
-FactoryGirl.define do 
+FactoryGirl.define do
   factory :post do
     title {Faker::HipsterIpsum.words.join(' ')}
     description {Faker::Lorem.sentences}
@@ -7,7 +7,7 @@ FactoryGirl.define do
     # css "p {background:#d24f5f;}"
 
     trait :with_image do
-      
+
     end
 
     trait :without_title do
@@ -20,6 +20,10 @@ FactoryGirl.define do
 
     trait :without_content do
       content ''
+    end
+
+    trait :as_draft do
+      status_type_id 1
     end
   end
 end

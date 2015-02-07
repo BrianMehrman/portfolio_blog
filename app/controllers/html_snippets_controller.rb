@@ -40,6 +40,8 @@ class HtmlSnippetsController < ApplicationController
   # POST /html_snippets
   # POST /html_snippets.json
   def create
+
+
     @html_snippet = HtmlSnippet.new(params[:html_snippet])
 
     respond_to do |format|

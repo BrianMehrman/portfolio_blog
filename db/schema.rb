@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130914192800) do
+ActiveRecord::Schema.define(:version => 20141004233719) do
 
   create_table "attachments", :force => true do |t|
     t.integer  "attachable_id"
@@ -85,18 +85,26 @@ ActiveRecord::Schema.define(:version => 20130914192800) do
     t.text     "html"
     t.text     "css"
     t.text     "javascript"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.integer  "status_type_id",     :default => 1
   end
 
   create_table "roles", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "status_types", :force => true do |t|
+    t.string   "name"
+    t.boolean  "public_use", :default => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
   create_table "users", :force => true do |t|

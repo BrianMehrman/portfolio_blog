@@ -1,12 +1,17 @@
 <ul id="post_menu">
-<li class="attachments_menu_button button">
-  <a href="<%=post_attachments_path(@post.id)%>" id="attachment_button">Attachments</a>
-  <div id="attachment_menu">
-    <div id="attachment_index">
+  <li class="attachments_menu_button button">
+    <a href="<%= attachments_path(post_id: @post.id) %>" id="attachment_button">Attachments</a>
+    <div id="attachment_menu">
+
+      <div id="attachment_index">
+      </div>
+      <div id="attachment_show_edit">
+      </div>
+
     </div>
-    <div id="attachment_show_edit">
-    </div>
-  </div>
+
+  </li>
+
 </ul>
 
 <%= form_for(@post, :html => { :multipart => true } ) do |f| %>
@@ -21,11 +26,11 @@
       </ul>
     </div>
   <% end %>
-  
+
   <div class="field">
     <%= f.text_area :content %>
   </div>
-  
+
   <div class="field">
     <%= f.hidden_field :image %>
   </div>

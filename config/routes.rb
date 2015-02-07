@@ -15,8 +15,9 @@ PortfolioBlog::Application.routes.draw do
 
   resources :categories
 
+  resources :attachments
+
   resources :posts do
-    resources :attachments
     collection do
       post 'edit_multiple'
       put 'update_multiple'

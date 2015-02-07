@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
 
-  
+
   layout 'facebox', :only => [:manage_selected_categories, :categorize_selected]
   def index
     @posts = params[:category].present? ? Post.by_category(params[:category]) : Post.all
@@ -27,7 +27,8 @@ class PostsController < ApplicationController
   # GET /posts/new
   # GET /posts/new.json
   def new
-    @post = Post.new
+    # create a post with the status of draft
+    @post = Post.find_or_create_by_user_id_and_status_type_id_and_title_and_description(session[:user_id],1,nil,nil)
 
     @post.html = "<p>Canvas pane goes here:</p>
       <canvas id='pane' width='300' height='200'></canvas>
@@ -41,7 +42,7 @@ class PostsController < ApplicationController
         context.fillStyle = 'rgba(0, 0, 250, 0.5)';
         context.fillRect(30, 30, 55, 50);
       </script>"
-    @post.css = "/* 
+    @post.css = "/*
       The CSS Goes Here
       */
       p {font-family: monospace;}"
@@ -60,17 +61,14 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    require "CanvasToImage"
-    File.open("tmp/reply.png", "wb") { |f| f.write(CanvasToImage::decode_data_uri(params[:post][:image])[0]) }  
+    # create post preview
+    # params[:post][:image] = file
 
-# binding.pry    
-    file = File.open("tmp/reply.png", "r")
-    params[:post][:image] = file
-
-    @post = Post.new(params[:post])
+    @post = Post.find(params[:post][:id])
+    params[:post][:image] = parse_image(params[:post][:image])
 
     respond_to do |format|
-      if @post.save
+      if @post.update_attributes(params[:post])
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
         format.json { render json: @post, status: :created, location: @post }
       else
@@ -86,11 +84,7 @@ class PostsController < ApplicationController
   def update
     require 'CanvasToImage'
     @post = Post.find(params[:id])
-    File.open("tmp/reply.png", "wb") { |f| f.write(CanvasToImage::decode_data_uri(params[:post][:image])[0]) }  
-
-# binding.pry    
-    file = File.open("tmp/reply.png", "r")
-    params[:post][:image] = file
+    params[:post][:image] = parse_image(params[:post][:image])
 
     respond_to do |format|
       if @post.update_attributes(params[:post])
@@ -123,7 +117,7 @@ class PostsController < ApplicationController
       post.categories = categories
       unless post.save
         # catch error here
-      end 
+      end
     end
 
     respond_to do |format|
@@ -144,4 +138,16 @@ class PostsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
+  private
+
+  def parse_image(image_data)
+    require 'CanvasToImage'
+
+    File.open("tmp/reply.png", "wb") { |f| f.write(CanvasToImage::decode_data_uri(image_data)[0]) }
+
+    File.open("tmp/reply.png", "r")
+  end
+
 end

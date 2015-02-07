@@ -10,6 +10,6 @@
   </li>
 <% end %>
 </ul>
+<%= link_to 'New Attachment', new_attachment_path(post_id: @post.id), remote: true, class: "new_button" %>
 
 <br />
-<%= link_to 'New Attachment', new_post_attachment_path(@post.id), class: "new_button" %>

@@ -43,10 +43,12 @@ Thumbs.db
 config/database.yml
 config/deploy.rb
 Capfile
-
+config/rubber
 public/dispatch.fcgi
 .htaccess
 
+public/system
+coverage/
 tmp/
 .sqlite3
 *.sqlite3

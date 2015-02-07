@@ -1,9 +1,28 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= 'test'
-require File.expand_path("../../config/environment", __FILE__)
+
+
+require 'simplecov'
+require 'simplecov-rcov'
+require 'webmock'
+require 'vcr'
+
+SimpleCov.start 'rails' do
+  add_group "Form Ojects", "app/form_objects"
+end
+class SimpleCov::Formatter::MergedFormatter
+  def format(result)
+     SimpleCov::Formatter::HTMLFormatter.new.format(result)
+     SimpleCov::Formatter::RcovFormatter.new.format(result)
+  end
+end
+SimpleCov.formatter = SimpleCov::Formatter::MergedFormatter
+
+VCR.use_cassette('load models') do
+  require File.expand_path("../../config/environment", __FILE__)
+end
 require 'rspec/rails'
 require 'rspec/autorun'
-
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }

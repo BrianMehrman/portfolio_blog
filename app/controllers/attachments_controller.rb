@@ -4,7 +4,7 @@ class AttachmentsController < ApplicationController
   def index
     @attachments = Attachment.all
 
-    @post = Post.find(params[:post_id])
+    @post = Post.find(params[:post_id]) if params[:post_id]
 
     respond_to do |format|
       # format.html # index.html.erb
@@ -30,7 +30,7 @@ class AttachmentsController < ApplicationController
   # GET /attachments/new.json
   def new
     @attachment = Attachment.new
-    @post = Post.find(params[:post_id])
+    @post = (params[:post_id] == 0 ? Post.find(params[:post_id]) : Post.new)
 
     respond_to do |format|
       format.html # new.html.erb
