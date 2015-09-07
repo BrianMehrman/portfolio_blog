@@ -40,7 +40,7 @@ class MediaController < ApplicationController
   # POST /media
   # POST /media.json
   def create
-    @medium = Medium.new(params[:medium])
+    @medium = Medium.new(media_params)
 
     respond_to do |format|
       if @medium.save
@@ -59,7 +59,7 @@ class MediaController < ApplicationController
     @medium = Medium.find(params[:id])
 
     respond_to do |format|
-      if @medium.update_attributes(params[:medium])
+      if @medium.update_attributes(media_params)
         format.html { redirect_to @medium, notice: 'Medium was successfully updated.' }
         format.json { head :no_content }
       else
@@ -80,4 +80,10 @@ class MediaController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+
+    def media_params
+      params.require(:medium).permit(:name, :description, :file, :media_type)
+    end
 end

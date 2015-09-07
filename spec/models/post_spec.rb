@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Post do
-  
+
   before(:each) do
     @user = FactoryGirl.create(:user)
     @post = FactoryGirl.create(:post)
@@ -11,14 +11,14 @@ describe Post do
     @post.save
     @post_attributes = FactoryGirl.attributes_for(:post)
   end
-  
+
   context "is invalid " do
     [:title, :description, :content].each do |attr|
       it "when #{attr} is blank." do
         subject.valid?
         expect(subject.errors[attr]).to include "can't be blank"
       end
-    end 
+    end
   end
 
   describe "#by_category" do

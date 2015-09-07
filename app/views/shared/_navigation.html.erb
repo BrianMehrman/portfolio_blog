@@ -1,49 +1,62 @@
-<div class="navbar navbar-fixed-top ">
-  <div class="navbar-inner">
-    <div class="container">
-
-			<% if logged_in? %>
-        <p class='greet-user' >
-					Hello, <%= current_user.name %>
-				</p>
-			<% end -%>
-
-      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </a>
-
-      <div class="nav-collapse collapse">
-				<ul class="nav">
-					<li><%= link_to "Blog", posts_path(:category=>"blog") %></li>
-					<li><%= link_to "Experiments", posts_path(:category=>"experiments") %></li>
-					<% if logged_in? %>
-						<li><%= link_to "Add Post", new_post_path %></li>
-						<li><%= link_to "Manage Posts", posts_path %></li>
-						<li><%= link_to "Add Catagory", new_category_path %></li>
-						<li><%= link_to "Manage category", categories_path %></li>
-						<li><%= link_to "Edit User", user_path(current_user), :class=> 'edit-user' %></li>
-						<li><%= link_to "Sign Out", sessions_path, :method => :delete, :class=> 'sign-out' %></li>
-					<% else %>
-						<li class="sign_in">
-							<%= link_to "Sign In", '#', :class=>'sign-in' %>
-							<span class="loading icon-spinner icon-spin" style="display:none;"></span>
-							<div class="new-session">
-							  <%= form_tag sessions_path do %>
-							    <p><%= label_tag 'Email' %> <%= text_field_tag :email %></p>
-							    <p><%= label_tag 'Password' %><%= password_field_tag :password %></p>
-							    <div class="input"><%= submit_tag 'Sign In' %></div>
-							  <% end %>
-							</div>
-						</li>
-					<% end -%>
-
-				</ul>
-
-      </div>
+  <div class="contain-to-grid sticky">
+  <nav class="tab-bar top-bar " data-topbar role="navigation" data-options="sticky_on: large" >
+    <div class="top-bar-section tab-bar-section">
+      <ul class="left" >
+          <li><%= link_to posts_path(:category=>"blog"), class: "", role: "button", tabindex:"0", title: "View Blog", "data-tooltip"=>"", "aria-haspopup"=>"true",'aria-label'=>"Blog" do %>
+            <span class=""><i class='fa fa-book'></i>
+            Blog</span>
+          <% end -%></li>
+          <li><%= link_to posts_path(:category=>"experiments"), class: "", role: "button", tabindex:"1", title: "View Experiments", "data-tooltip"=>"", "aria-haspopup"=>"true", 'aria-label'=>"Experiments" do %>
+            <span class=""><i class='fa fa-flask'></i>
+            Experiments</span>
+          <% end -%></li>
+      </ul>
     </div>
-  </div>
-	<div class="row"><div class="logo col-lg-1"><%= image_tag "logo.svg" %></div></div>
 
+    <section class="right-small">
+      <a class="right-off-canvas-toggle menu-icon" ><span></span></a>
+    </section>
+  </nav>
+  <% if logged_in? %>
+    <aside class="right-off-canvas-menu">
+      <ul class="off-canvas-list">
+        <li><label>Admin</label></li>
+        <li >
+          <%= link_to "Add Post", new_post_path %>
+        </li>
+        <li >
+          <%= link_to "Manage Posts", posts_path %>
+        </li>
+        <li >
+          <%= link_to "Add Catagory", new_category_path %>
+        </li>
+        <li >
+          <%= link_to "Manage category", categories_path %>
+        </li>
+        <li >
+          <%= link_to "Edit User", user_path(current_user), :class=> 'edit-user' %>
+        </li>
+        <li >
+          <%= link_to "Sign Out", sessions_path, :method => :delete, :class=> 'sign-out' %>
+        </li>
+      </ul>
+    </aside>
+  <% else %>
+    <aside class="right-off-canvas-menu">
+      <ul class="off-canvas-list">
+      <li class=" sign_in">
+        <%= link_to "Sign In", '#', :class=>'sign-in' %>
+        <span class="loading icon-spinner icon-spin" style="display:none;"></span>
+        <div class="new-session">
+          <%= form_tag sessions_path do %>
+            <p><%= label_tag 'Email' %> <%= text_field_tag :email %></p>
+            <p><%= label_tag 'Password' %><%= password_field_tag :password %></p>
+            <div class="input"><%= submit_tag 'Sign In' %></div>
+          <% end %>
+        </div>
+      </li>
+      </ul>
+    </aside>
+  <% end -%>
 </div>
+

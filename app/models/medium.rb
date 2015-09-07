@@ -1,7 +1,9 @@
+## Medium as in the type of media used to create a work of art.
 class Medium < ActiveRecord::Base
-  attr_accessible :description, :file, :media_type, :name
+  # attr_accessible :description, :file, :media_type, :name
 
   has_many :attachments, as: :attachable
 
-  has_attached_file :file
+  mount_uploader :file, FileUploader
+
 end

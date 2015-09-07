@@ -56,27 +56,45 @@ describe PostsController do
   end
 
   describe "#create" do
+    context "when post is valid" do
+      before(:each) do
+        img_str = File.open('spec/assets/images/text_uri_image.txt').read
+        post_params = {
+          id: @post.id,
+          image: img_str
+        }.merge(@post_attributes.except("created_at","updated_at","image_file_name",
+                                        "image_content_type","image_file_size",
+                                        "image_updated_at","status_type_id"))
+        post :create, post: post_params
+      end
+      it "creates a post" do
+        expect(assigns(:post).title).to eq(@post_attributes[:title])
+      end
 
-    before(:each) do
-      img_str = File.open('spec/assets/images/text_uri_image.txt').read
-      post_params = {
-        id: @post.id,
-        image: img_str
-      }.merge(@post_attributes.except("created_at","updated_at","image_file_name",
-                                      "image_content_type","image_file_size",
-                                      "image_updated_at","status_type_id"))
-      post :create, post: post_params
-    end
-    it "creates a post" do
-      expect(assigns(:post).title).to eq(@post_attributes[:title])
+      it "redirects to created post" do
+        response.should redirect_to(Post.last)
+      end
+
+      it "has only one post" do
+        expect(Post.all.size).to eq(1)
+      end
     end
 
-    it "redirects to created post" do
-      response.should redirect_to(Post.last)
-    end
-
-    it "has only one post" do
-      expect(Post.all.size).to eq(1)
+    context "when post is invalid" do
+      before(:each) do
+        img_str = File.open('spec/assets/images/text_uri_image.txt').read
+        post_params = {
+          id: @post.id,
+          image: img_str
+        }.merge(@post_attributes.except("created_at","updated_at","image_file_name",
+                                        "image_content_type","image_file_size",
+                                        "image_updated_at","status_type_id"))
+        post_params[:title] = ""
+        post :create, post: post_params
+      end
+      it "returns an error" do
+        expect(assigns(:post).errors.size).to eq(1)
+      end
     end
   end
 

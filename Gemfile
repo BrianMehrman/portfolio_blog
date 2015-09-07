@@ -1,33 +1,56 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.8'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
+gem 'rails', '4.1.9'
 
-gem 'mysql2'
+gem 'react-rails', '~> 1.0'
+gem 'flux-rails'
+
+# gem 'mysql2'
+gem 'pg'
 gem 'thin'
 gem "font-awesome-rails"
+gem 'font-awesome-sass'
+group :development do
+  gem "better_errors"
+  gem "binding_of_caller"
+end
+
 # gem "therubyracer", :require => 'v8'
 group :development, :test do
 	gem 'pry'
+  gem 'metric_fu'
   gem 'simplecov', require: false
   gem 'simplecov-rcov', require: false
+  gem 'guard'
+  gem 'guard-rspec', require: false
+  gem 'guard-bundler'
 end
+# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+gem 'jbuilder', '~> 2.0'
+# bundle exec rake doc:rails generates the API under doc/api.
+gem 'sdoc', '~> 0.4.0',          group: :doc
+gem 'spring',        group: :development
 
 gem 'fcgi'
-
+gem 'ckeditor'
 gem 'facebox-rails'
-gem 'paperclip'
+gem 'paper_trail', '~> 4.0.0.beta'
+# gem 'paperclip'
+gem 'rmagick'
+gem 'carrierwave'
 gem 'codemirror-rails'
+gem 'foundation-rails', '5.4.3.1'
+gem 'slim'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
+  gem 'sass-rails',   '~> 4.0.1'
   gem 'less-rails'
-  gem 'coffee-rails', '~> 3.2.1'
+  gem 'coffee-rails', '~> 4.1.0'
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  gem 'twitter-bootstrap-rails'
   gem 'uglifier', '>= 1.0.3'
 end
 
@@ -44,14 +67,15 @@ group :test do
   gem 'webrat'
   gem "vcr"
   gem 'webmock', "1.15.2"
-
+  gem 'jasmine'
+  gem 'guard-jasmine', :git => 'https://github.com/guard/guard-jasmine', :branch => 'jasmine-2'
 end
 
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 
 # To use ActiveModel has_secure_password
-gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt', '~> 3.1.7'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'

@@ -1,12 +1,23 @@
-<div class="post inset-shadow">
-  <div class="post_header">
-    <div class="disc-stage-64 rotate-to-date" data-post-date="<%= post.created_at %>">
-     <div class="night-day-disc"></div>
+<article class="post inset-shadow">
+  <div class="row post_header">
+
+    <div class="small-3 medium-2 columns">
+      <div class="row column date-stamp text-center" data-post-date="<%= post.created_at %>">
+        <div class="column">
+          <div class="row black band month text-center"><div class="column"><%= post.created_at.strftime("%^b") %></div></div>
+          <div class="row band day text-center"><div class="column"><%= post.created_at.strftime("%d") %></div></div>
+          <div class="row black band year text-center"><div class="column"><%= post.created_at.strftime("%Y") %></div></div>
+        </div>
+      </div>
     </div>
-    <p class="post_title"><%= link_to( (content_tag(:span,'',:class=>'post_title_pointer')+post.title), post) %></p>
-    <div class="post_desc">
-      <span><%= post.description %></span>
+    <div class="small-9 medium-6 columns">
+      <div class="row"><h3 class="column post_title"><%= link_to( (content_tag(:span,'',:class=>'post_title_pointer')+post.title), post) %></h3></div>
+      <div class="row ">
+        <div class="column"><%= post.description %></div>
+      </div>
+    </div>
+    <div class="small-9 medium-4 columns">
+      <img src="http://placehold.it/400x240&text=[img]"/>
     </div>
   </div>
-  <div class="clear"></div>
-</div>
+</article>

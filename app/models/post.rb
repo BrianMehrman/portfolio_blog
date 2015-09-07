@@ -1,7 +1,7 @@
 class Post < ActiveRecord::Base
-	attr_accessible :image, :title, :description, :content, :user_id, :html, :css, :javascript, :status_type_id
+	# attr_accessible :image, :title, :description, :content, :user_id, :html, :css, :javascript, :status_type_id
 
-	has_attached_file :image, :styles => { :medium => "300x300", :thumb => "100x100" }
+	mount_uploader :image, ImageUploader
 
 	has_many :categorized_posts
 	has_many :categories, :through => :categorized_posts

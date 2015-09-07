@@ -12,14 +12,16 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require twitter/bootstrap
-//= require jquery-ui
+//= require foundation
+//#= require jquery-ui
 //= require codemirror
 //= require codemirror/modes/javascript
 //= require codemirror/modes/htmlmixed
 //= require codemirror/modes/xml
 //= require codemirror/modes/css
-//= require jquery.facebox
+//= require react
+//= require react_ujs
+//= require components
 //= require_tree .
 
 removeSection = function(e){
@@ -58,8 +60,7 @@ var rotateToTime = function(el) {
 
 if (window.attachEvent) window.attachEvent("onload", sfHover);
 
-jQuery(document).ready(function($) {
-  $('a[rel*=facebox]').facebox()
+$(document).ready(function($) {
   $('.js-remove').click(removeSection);
   rotateToTime('.rotate-to-date');
 
@@ -80,3 +81,5 @@ getForm = function ( element )
   return 0; //error: no form found in ancestors
 }
 
+
+$(function(){ $(document).foundation(); });

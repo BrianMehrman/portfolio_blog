@@ -1,3 +1,19 @@
-<header id="header">
-	<!-- <h1><%# link_to 'Brian Mehrman', pages_home_path %></h1> -->
-</header>
+<div class="row news-border title">
+  <a href="/">
+    <div class="small-5 columns text-right"><h1>Brian</h1></div>
+    <div class="small-2 columns text-center logo"><%= image_tag "logo.svg" %></div>
+    <div class="small-5 columns text-left"><h1>Mehrman</h1></div>
+  </a>
+</div>
+<div class="row news-border">
+  <hr class='news' />
+  <div class="small-12 columns text-center">
+    <h3><small>It's about the code.</small></h1>
+  </div>
+  <hr class="news" />
+  <% if logged_in? %>
+    <p class='greet-user' >
+      Hello, <%= current_user.name %>
+    </p>
+  <% end -%>
+</div>

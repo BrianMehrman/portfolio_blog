@@ -23,9 +23,21 @@ VCR.use_cassette('load models') do
 end
 require 'rspec/rails'
 require 'rspec/autorun'
+
+require 'bundler/setup'
+Bundler.require(:default, :test)
+
+
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
+
+# Checks for pending migrations before tests are run.
+# If you are not using ActiveRecord, you can remove this line.
+ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
+
+# Any particular reason we weren't using this post rails update?
+ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
   # ## Mock Framework
@@ -35,7 +47,22 @@ RSpec.configure do |config|
   # config.mock_with :mocha
   # config.mock_with :flexmock
   # config.mock_with :rr
+  config.include FactoryGirl::Syntax::Methods
+  config.infer_spec_type_from_file_location!
 
+  config.before(:suite) do
+    FactoryGirl.reload
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.before(:all) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:all) do
+    DatabaseCleaner.clean
+  end
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 

@@ -1,42 +1,55 @@
-<ul id="post_menu">
-  <li class="attachments_menu_button button">
-    <a href="<%= attachments_path(post_id: @post.id) %>" id="attachment_button">Attachments</a>
-    <div id="attachment_menu">
-
-      <div id="attachment_index">
-      </div>
-      <div id="attachment_show_edit">
-      </div>
-
-    </div>
-
-  </li>
-
-</ul>
-
-<%= form_for(@post, :html => { :multipart => true } ) do |f| %>
-  <% if @post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
-
-      <ul>
-      <% @post.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+<div class="row">
+  <div class="column">
+    <ul id="post_menu">
+      <li class="attachments_menu_button button">
+        <a href="<%= attachments_path(post_id: @post.id) %>" id="attachment_button">Attachments</a>
+        <div id="attachment_menu">
+          <div id="attachment_index">
+          </div>
+          <div id="attachment_show_edit">
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="row">
+  <div class="columns">
+    <%= form_for(@post, :html => { :multipart => true } ) do |f| %>
+      <div class="row">
+      <% if @post.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+          <ul>
+          <% @post.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
+      </div>
 
-  <div class="field">
-    <%= f.text_area :content %>
+      <div class="row">
+        <div class="small-2 columns"><%= f.label :title %> </div>
+        <div class="small-10 columns"><%= f.text_field :title %></div>
+      </div>
+
+      <div class="row">
+        <div class="small-2 columns"><%= f.label :description %> </div>
+        <div class="small-10 columns"><%= f.text_field :description %></div>
+      </div>
+
+      <div class="row"><div class="column"><%= f.label :content %> </div></div>
+      <div class="row"><div class="column"><%= f.text_area :content, rows:25 %></div></div>
+
+      <div class="row">
+        <div class="column"><%= f.hidden_field :image %></div>
+      </div>
+      <div class="row actions">
+          <div class="small-1 small-offset-10 columns"><%= icon_submit_link("icon-save", "Save", "submit") %></div>
+          <div class="small-1 columns"><%= link_to 'Back', posts_path %></div>
+      </div>
+
+    <% end %>
   </div>
-
-  <div class="field">
-    <%= f.hidden_field :image %>
-  </div>
-
-  <div class="actions">
-      <%= icon_submit_link("icon-save", "Save", "submit") %>
-  </div>
-
-<% end %>
+</div>

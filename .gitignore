@@ -44,9 +44,11 @@ config/database.yml
 config/deploy.rb
 Capfile
 config/rubber
+config/initializers/secret_token.rb
 public/dispatch.fcgi
 .htaccess
 
+node_modules
 public/system
 coverage/
 tmp/

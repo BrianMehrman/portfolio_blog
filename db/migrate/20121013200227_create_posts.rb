@@ -7,9 +7,6 @@ class CreatePosts < ActiveRecord::Migration
 
       t.text :content
 
-      t.text :html
-      t.text :css 
-      t.text :javascript
 
       t.timestamps
     end

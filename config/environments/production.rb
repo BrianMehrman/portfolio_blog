@@ -3,7 +3,8 @@ PortfolioBlog::Application.configure do
 
   # Code is not reloaded between requests
   config.cache_classes = true
-
+  # Do not eager load code on boot.
+  config.eager_load = true
   # Full error reports are disabled and caching is turned on
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
@@ -19,6 +20,9 @@ PortfolioBlog::Application.configure do
 
   # Generate digests for assets URLs
   config.assets.digest = true
+
+  # config/environments/production.rb
+  config.react.variant = :production
 
   # Defaults to nil and saved in location specified by config.assets.prefix
   # config.assets.manifest = YOUR_PATH
