@@ -40,7 +40,9 @@ class HtmlSnippetsController < ApplicationController
   # POST /html_snippets
   # POST /html_snippets.json
   def create
-    @html_snippet = HtmlSnippet.new(params[:html_snippet])
+
+
+    @html_snippet = HtmlSnippet.new(html_snippet_params)
 
     respond_to do |format|
       if @html_snippet.save
@@ -59,7 +61,7 @@ class HtmlSnippetsController < ApplicationController
     @html_snippet = HtmlSnippet.find(params[:id])
 
     respond_to do |format|
-      if @html_snippet.update_attributes(params[:html_snippet])
+      if @html_snippet.update_attributes(html_snippet_params)
         format.html { redirect_to @html_snippet, notice: 'Html snippet was successfully updated.' }
         format.json { head :no_content }
       else
@@ -79,5 +81,12 @@ class HtmlSnippetsController < ApplicationController
       format.html { redirect_to html_snippets_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+
+  def html_snippet_params
+    params.require(:html_snippet).permit(:name, :description, :html, :css, :javascript, :image)
+
   end
 end

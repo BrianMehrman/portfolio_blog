@@ -4,7 +4,7 @@ class AttachmentsController < ApplicationController
   def index
     @attachments = Attachment.all
 
-    @post = Post.find(params[:post_id])
+    @post = Post.find(params[:post_id]) if params[:post_id]
 
     respond_to do |format|
       # format.html # index.html.erb
@@ -30,7 +30,7 @@ class AttachmentsController < ApplicationController
   # GET /attachments/new.json
   def new
     @attachment = Attachment.new
-    @post = Post.find(params[:post_id])
+    @post = (params[:post_id] == 0 ? Post.find(params[:post_id]) : Post.new)
 
     respond_to do |format|
       format.html # new.html.erb
@@ -52,7 +52,7 @@ class AttachmentsController < ApplicationController
   def create
     @post = Post.find(params[:post_id])
 
-    @attachment = Attachment.new(params[:attachment])
+    @attachment = Attachment.new(attachment_params)
 
     respond_to do |format|
       if @attachment.save
@@ -72,7 +72,7 @@ class AttachmentsController < ApplicationController
     @attachment = Attachment.find(params[:id])
 
     respond_to do |format|
-      if @attachment.update_attributes(params[:attachment])
+      if @attachment.update_attributes(attachment_params)
         format.html { redirect_to @attachment, notice: 'Attachment was successfully updated.' }
         format.json { head :no_content }
       else
@@ -93,4 +93,10 @@ class AttachmentsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+
+    def attachment_params
+      params.require(:attachment).permit(:attachable_id, :attachable_type, :attacher_id, :post_id, :slug_name)
+    end
 end

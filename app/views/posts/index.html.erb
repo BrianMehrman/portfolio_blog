@@ -1,26 +1,9 @@
-<div class="posts_section">
-<h2><%= params[:category].nil? ? "What have I been up to?" : params[:category].titleize %></h2>
+
+<% content_for :css do %>
+   <%= stylesheet_link_tag 'blog', media: 'all' %>
+<% end -%>
 
 
-  <% if logged_in? %>
-    <div>
-      <ul>
-        <li><%= link_to "Edit Categories", 
-                        manage_selected_categories_posts_path,
-                        :remote=>true,
-                        :rel=>"facebox" %>
-      </ul>
-    </div>
-  <% end -%>
-  <ul class="posts">
-    <% @posts.each do |post| %>
-    <li>
-      <%= render :partial=>"preview_post", :locals=>{:post=>post} %>
-    </li>
-    <% end %>
-  </ul>
-<div class="clear"></div>
-<br />
-
-<%= link_to( 'New Post', new_post_path ) if logged_in? %>
+<div class="row">
+  <div class="column"><%= react_component("BlogIndexPage", render(template: 'posts/index.json.jbuilder')) %></div>
 </div>

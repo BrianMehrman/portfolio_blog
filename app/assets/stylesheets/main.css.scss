@@ -1,3 +1,8 @@
+$header-font-family: 'IM Fell English', serif;
+
+div, body, h1, h2, h3, h4, p {
+  font-family: 'IM Fell English', serif;
+}
 a {
   color: #000;
   &:visited {
@@ -9,43 +14,57 @@ a {
   }
 }
 
-#wrapper {
-	width:100%;
-	max-width:720px;
-	margin: 0 auto;
+.logo img {
+  width: 6em;
 }
-@media (min-width: 980px) {
-  #wrapper {
-    margin-top: 4em;
+
+.news-border {
+  border-bottom: black 2px solid;
+}
+
+.news {
+  border-color: black;
+  margin: 0.2em 0;
+}
+.title {
+  padding-bottom: 1em;
+}
+
+.posts {
+  margin-top:1em;
+}
+
+
+
+.date-stamp {
+  border: none;
+  width:2em;
+  .day {
+    font-size: 3em;
+    line-height: 1em;
+    background: #fff;
   }
+  .year {
+    letter-spacing: 3px;
+  }
+  .month {
+    letter-spacing: 2px;
+  }
+
+  .black {
+    color:#f1f1f1;
+    background: #333;
+  }
+
+  .band {
+    border-left: 1px solid #333;
+    border-right: 1px solid #333;
+  }
+
+  .band-top { border-top: 1px solid #333;}
+  .band-bottom { border-bottom: 1px solid #333;}
 }
 
-.sign {
-  background: url("wooden_sign_bg.png");
-  position: relative;
-  font-size: 18pt;
-  line-height: 24pt;
-  width: 10em;
-  z-index: 100;
-  margin: 0 auto;
-  text-align: center;
-  top:2em;
-}
-
-.navbar .btn-navbar {
-  z-index: 900;
-}
-
-.window {
-  height: 26em;
-  background: #77aac3;
-}
-
-.logo {
-  float: none;
-  margin: -1em auto;
-  text-align: center;
-}
 
 .disc-stage-64 {
   height: 64px;
@@ -65,9 +84,6 @@ a {
   left: -6em;
 }
 
-.logo img {
-  width: 5em;
-}
 
 .CodeMirror {
 	width:100%;
@@ -84,48 +100,5 @@ a {
   clear: both;
 }
 
-#window_bottom_home {
 
-  #recent_blogs, #recent_experiments {
-    float: left;
-    height: 30em;
-    overflow: hidden;
-    border-bottom: #333 solid 2px;
-    h2 {
-      text-align: center;
-    }
 
-    .posts{
-      background: #B5C1C6;
-      padding: 0.5em;
-      border-radius: 0.4em;
-      min-height: 30em;
-      margin: 0.5em;
-
-      -webkit-box-shadow: 0 0 0.4em 0.1em rgba(0,0,0,0.66);
-      -moz-box-shadow: 0 0 0.4em 0.1em rgba(0,0,0,0.66);
-      box-shadow: 0 0 0.4em 0.1em rgba(0,0,0,0.66);
-    }
-    li {
-      list-style:none;
-    }
-    .post {
-      background: #FCF9F2;
-      margin:0.5em 0.35em;
-      padding: 0.25em;
-      text-align: justify;
-    }
-
-    .inset-shadow {
-      -webkit-box-shadow: inset 0 0 0.25em 0.1em rgba(0,0,0,0.75);
-      -moz-box-shadow: inset 0 0 0.25em 0.1em rgba(0,0,0,0.75);
-      box-shadow: inset 0 0 0.25em 0.1em rgba(0,0,0,0.75);
-    }
-  }
-}
-
-.hole {
-      -webkit-box-shadow: inset 0px -4px 6px 3px rgba(0,0,0,0.75);
-      -moz-box-shadow: inset 0px -4px 6px 3px rgba(0,0,0,0.75);
-      box-shadow: inset 0px -4px 6px 3px rgba(0,0,0,0.75);
-    }

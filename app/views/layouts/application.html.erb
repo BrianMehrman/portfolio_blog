@@ -1,42 +1,55 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>PortfolioBlog</title>
-  <%= favicon_link_tag 'favicon.ico' %>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <%= csrf_meta_tags %>
-  <% if content_for?(:head) %>
-  	<%= yield :head %>
-  <% end %>
+    <title><%= content_for?(:title) ? yield(:title) : "Brian Mehrman" %></title>
+
+    <% if content_for?(:css) %>
+      <%= yield :css %>
+    <% else %>
+      <%= stylesheet_link_tag  "application" %>
+    <% end -%>
+
+    <%= csrf_meta_tags %>
+    <% if content_for?(:head) %>
+      <%= yield :head %>
+    <% end %>
   </head>
-<body>
-	<div id="wrapper" class="container-fluid">
-		<% if content_for?(:header) %>
-			<%= yield :header %>
-		<% else %>
-			<%= render "shared/header" %>
-		<% end -%>
+
+  <body>
+    <div class="off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
       <% if content_for?(:navigation) %>
         <%= yield :navigation %>
       <% else %>
         <%= render "shared/navigation" %>
       <% end -%>
+      <section class="main-section">
+        <% if content_for?(:header) %>
+          <%= yield :header %>
+        <% else %>
+          <%= render "shared/header" %>
+        <% end -%>
 
-      <% if content_for?(:sidebar) %>
-        <%= yield :sidebar %>
-      <% else %>
-        <%= render "shared/sidebar" %>
-      <% end -%>
-		<%= yield %>
+        <%= yield %>
 
-		<% if content_for?(:footer) %>
-			<%= yield :footer %>
-		<% else %>
-			<%= render "shared/footer" %>
-		 <% end -%>
-	</div>
+        <% if content_for?(:footer) %>
+          <%= yield :footer %>
+        <% else %>
+          <%= render "shared/footer" %>
+        <% end -%>
+      </section>
+        <a class="exit-off-canvas"></a>
+      </div>
+    </div>
 
-</body>
+    <%= javascript_include_tag "vendor/modernizr" %>
+     <% if content_for?(:javascript) %>
+      <%= yield :javascript %>
+    <% else %>
+      <%= javascript_include_tag "application" %>
+    <% end -%>
+  </body>
 </html>

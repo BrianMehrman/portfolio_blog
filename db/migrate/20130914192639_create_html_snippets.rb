@@ -6,7 +6,7 @@ class CreateHtmlSnippets < ActiveRecord::Migration
       t.text :html
       t.text :css
       t.text :javascript
-      t.attachment :image
+      t.string :image
 
       t.timestamps
     end
